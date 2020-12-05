@@ -1,14 +1,11 @@
 from flask import Flask, request, abort
 
-from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage, StickerSendMessage
 
-app = Flask(__name__)
+from tokens import line_bot_api, handler  # token
 
-line_bot_api = LineBotApi(
-    '6zD7qNcZHoTJKL//r0odUpgEQCZghzMEtrxLyDliXevFF0K7bcf2HYzplYH1jmre7wqWYu/kaCgQ8QGQ7Da/FLmvPHSbiDefh0DUCF8WZCNxxuuWBrzG4WCLazxIbok+oZf0GuUNQxGEpNPnwl2J6QdB04t89/1O/w1cDnyilFU=')
-handler = WebhookHandler('f35b52879515aa305b5f87011a00518d')
+app = Flask(__name__)
 
 
 @app.route('/')
