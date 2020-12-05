@@ -11,6 +11,7 @@ def command(event):
     sticker_message = StickerSendMessage(  # this is sticker
         package_id='1',
         sticker_id='1', )
+
     if user_msg == 'p makan':
         line_bot_api.reply_message(user_token,
                                    TextSendMessage(text='a'), )
@@ -22,6 +23,36 @@ def command(event):
                 TextSendMessage(text="Status : {}".format(profile.status_message)),
                 sticker_message,
             ],
+        )
+
+    if user_msg == 'push':
+        line_bot_api.push_message(
+            event.source.user_id, [
+                TextSendMessage(text='PUSH!'),
+            ]
+        )
+    if user_msg == 'multicast':
+        line_bot_api.multicast(
+            [event.source.user_id], [
+                TextSendMessage(text='THIS IS A MULTICAST MESSAGE'),
+            ]
+        )
+    if user_msg == 'broadcast':
+        line_bot_api.broadcast(
+            [
+                TextSendMessage(text='THIS IS A BROADCAST MESSAGE'),
+            ]
+        )
+    if user_msg.startswith('broadcast '):  # broadcast 20190505
+        date = user_msg.split(' ')[1]
+        print("Getting broadcast result: " + date)
+        result = line_bot_api.get_message_delivery_broadcast(date)
+        line_bot_api.reply_message(
+            event.reply_token, [
+                TextSendMessage(text='Number of sent broadcast messages: ' + date),
+                TextSendMessage(text='status: ' + str(result.status)),
+                TextSendMessage(text='success: ' + str(result.success)),
+            ]
         )
 
     if user_msg == 'bye bot':
