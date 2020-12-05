@@ -1,5 +1,5 @@
 from linebot.models import StickerSendMessage, TextSendMessage, SourceGroup, SourceRoom
-from linebot.models import FlexSendMessage,BubbleContainer,ImageComponent,URIAction
+from linebot.models import FlexSendMessage,BubbleContainer,ImageComponent,URIAction,ImageSendMessage
 from tokens import line_bot_api
 
 
@@ -10,11 +10,25 @@ def command(event):
     profile = line_bot_api.get_profile(event.source.user_id)  # get user's id
     sticker_message = StickerSendMessage(  # this is sticker
         package_id='1',
-        sticker_id='1', )
+        sticker_id='7', )
 
     if user_msg == 'einainfo':
-        line_bot_api.reply_message(user_token,
-                                   TextSendMessage(text='a'), )
+        line_bot_api.reply_message(user_token,[
+            ImageSendMessage(
+                original_content_url='https://i.ibb.co/Qc9gt43/Announcement-Perwakilan-TPB-Live-Instastory.jpg',
+                preview_image_url='https://i.ibb.co/Qc9gt43/Announcement-Perwakilan-TPB-Live-Instastory.jpg'
+            ),
+            TextSendMessage(text='''
+            Malem All :) 0x100078
+            Kenalin namaku Eina, personal asistant buat para anggota STEI20,
+            jadi, aku mau nyampein nih kalau besok ada forum angkatan.
+            Forum ini bakal diadain pada jam 19.00 WIB.
+            Jadi, jangan pada telat ya!! 0x10008A
+            '''),
+            sticker_message
+
+        ],)
+
     if user_msg == 'myprofile':
         line_bot_api.reply_message(
             user_token,
@@ -26,18 +40,7 @@ def command(event):
         )
 
     if user_msg == 'flexmsg':
-        flex_message = FlexSendMessage(
-            alt_text='hello',
-            contents=BubbleContainer(
-                direction='ltr',
-                hero=ImageComponent(
-                    url='https://s33046.pcdn.co/wp-content/uploads/2020/04/multiple-string-delimiters-624x256.png',
-                    size='full',
-                    aspect_ratio='20:13',
-                    aspect_mode='cover',
-                    action=URIAction(uri='http://example.com', label='label')
-                )
-            )
+        flex_message = FlexSendMessage( # otw ngab
         )
         message = FlexSendMessage(alt_text="hello", contents=flex_message)
         line_bot_api.reply_message(
