@@ -13,7 +13,5 @@ def command(event):
         line_bot_api.reply_message(user_token,
                                    TextSendMessage(text='a'), )
     if user_msg == 'myusername':
-        line_bot_api.reply_message(
-            user_token,
-            TextSendMessage(text="{}".format(profile.display_name) # benernya ga harus gini si, cuma ya gitu, biar estetis aja
-        )
+        line_bot_api.reply_message( user_token, TextSendMessage(text="{}".format(profile.display_name)),
+                                    )
