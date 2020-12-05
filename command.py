@@ -1,4 +1,4 @@
-from linebot.models import StickerSendMessage, TextSendMessage, SourceGroup, SourceRoom, flex_message
+from linebot.models import StickerSendMessage, TextSendMessage, SourceGroup, SourceRoom
 from linebot.models import FlexSendMessage,BubbleContainer,ImageComponent,URIAction
 from tokens import line_bot_api
 
@@ -38,6 +38,11 @@ def command(event):
                     action=URIAction(uri='http://example.com', label='label')
                 )
             )
+        )
+        message = FlexSendMessage(alt_text="hello", contents=flex_message)
+        line_bot_api.reply_message(
+            user_token,
+            message,
         )
 
     if user_msg == 'notify_me':  # this will push something to the user , to be continue
