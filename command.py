@@ -23,8 +23,8 @@ def command(event):
                 sticker_message,
             ],
         )
-    '''
-        if user_msg == 'bye bot':
+
+    if user_msg == 'bye bot':
         if isinstance(event.source, SourceGroup):
             line_bot_api.reply_message(
                 event.reply_token, TextSendMessage(text='Thank you'))
@@ -33,5 +33,5 @@ def command(event):
             line_bot_api.reply_message(
                 event.reply_token, TextSendMessage(text='Thank you'))
             line_bot_api.leave_group(event.source.room_id)
-    '''
+
 
