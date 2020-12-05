@@ -7,8 +7,7 @@ def command(event):
     sticker_message = StickerSendMessage(
         package_id='1',
         sticker_id='1', )
-
-    if user_msg == 'a':
+    if user_msg == 'p makan':
         line_bot_api.reply_message(event.reply_token,
                                    TextSendMessage(text='a'), )
     else:
