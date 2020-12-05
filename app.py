@@ -1,9 +1,9 @@
 from flask import Flask, request, abort
 
 from linebot.exceptions import InvalidSignatureError
-from linebot.models import MessageEvent, TextMessage, TextSendMessage, StickerSendMessage
+from linebot.models import MessageEvent, TextMessage
 
-from tokens import line_bot_api, handler  # token
+from tokens import handler  # token
 from command import command
 
 app = Flask(__name__)
