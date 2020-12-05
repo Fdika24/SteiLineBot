@@ -5,7 +5,7 @@ from tokens import line_bot_api
 def command(event):
     user_msg = event.message.text
     user_token = event.reply_token
-    profile = line_bot_api.get_profile(event.user_id)
+    profile = line_bot_api.get_profile(event.source.user_id)
     sticker_message = StickerSendMessage(
         package_id='1',
         sticker_id='1', )
@@ -15,5 +15,9 @@ def command(event):
     else:
         line_bot_api.reply_message(
             user_token,
-            sticker_message,
+            [
+                TextSendMessage(text="{}".format(profile.display_name)),
+                sticker_message,
+
+            ],
         )
