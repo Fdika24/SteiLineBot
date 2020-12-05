@@ -1,4 +1,4 @@
-from flask import Flask, request, abort
+from flask import Flask, request, abort, redirect
 
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage
@@ -11,7 +11,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    return 'Hello World!'
+    return redirect("http://farhandika.work/")
 
 
 @app.route('/callback', methods=['POST'])
