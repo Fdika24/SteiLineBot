@@ -46,7 +46,7 @@ def command(event):
             user_token,
             [
                 sticker_message,
-
+                message,
             ]
         )
 
