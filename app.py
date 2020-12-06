@@ -1,11 +1,10 @@
-from flask import Flask, request, abort, redirect, json , jsonify
+from flask import Flask, request, abort, redirect, json, jsonify
 
 from linebot.exceptions import InvalidSignatureError
-from linebot.models import MessageEvent, TextMessage, JoinEvent, TextSendMessage
+from linebot.models import MessageEvent, TextMessage, JoinEvent, TextSendMessage, StickerMessage
 
 from tokens import handler, line_bot_api  # token
 from command import command
-
 
 app = Flask(__name__)
 
@@ -42,8 +41,15 @@ def handle_message(event):
 @handler.add(JoinEvent)
 def handle_join(event):
     line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text='Joined this ' + event.source.type))
+        event.reply_token, [
+            TextSendMessage(text='Terima kasih udah menerima Eina-chan di group chat anda. \n'),
+            TextSendMessage(text='Hallo, perkenalkan namaku Eina-chan, Personal bot kalian.\n'
+                                 'Untuk saat ini, belum banyak yang bisa aku lakukan, jadi mohon bantuannya. '),
+            StickerMessage(
+                package_id=1,
+                sticker_id=5,
+            )
+        ])
 
 
 if __name__ == '__main__':

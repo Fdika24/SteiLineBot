@@ -1,8 +1,9 @@
 from linebot.models import StickerSendMessage, TextSendMessage, SourceGroup, SourceRoom
-from linebot.models import FlexSendMessage,ImageSendMessage
+from linebot.models import FlexSendMessage, ImageSendMessage
 from tokens import line_bot_api
 
 import json
+
 
 # this where we do our command n shits
 def command(event):
@@ -23,10 +24,10 @@ def command(event):
             [
                 flex_message,
                 TextSendMessage(
-                    text='Malem All :)\nKenalin namaku Eina, personal asistant buat para anggota STEI20.\nJadi, '
-                         'aku mau nyampein nih kalau besok ada forum angkatan. Forum ini bakal diadain jam 19.00 WIB '
+                    text='Malem All :)\n Aku mau ngomong nih. '
+                         'Aku mau nyampein nih kalau besok ada forum angkatan. Forum ini bakal diadain jam 19.00 WIB '
                          'hari selasa.\nJadi, jangan pada telat ya!! '
-                            ),
+                ),
                 sticker_message,
             ]
         )
