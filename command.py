@@ -2,6 +2,7 @@ from linebot.models import StickerSendMessage, TextSendMessage, SourceGroup, Sou
 from linebot.models import FlexSendMessage,ImageSendMessage
 from tokens import line_bot_api
 
+import json
 
 # this where we do our command n shits
 def command(event):
@@ -11,7 +12,10 @@ def command(event):
     sticker_message = StickerSendMessage(  # this is sticker
         package_id='1',
         sticker_id='7', )
-
+    # do not bother to edit anything
+    f = open('flex.json', )
+    data = json.load(f)
+    # batas suci
     if user_msg == 'einainfo':
         line_bot_api.reply_message(user_token,[
             ImageSendMessage(
@@ -39,14 +43,12 @@ def command(event):
         )
 
     if user_msg == 'flexmsg':
-        flex_message = FlexSendMessage(
-        )
-        message = FlexSendMessage(alt_text="hello")
+        flex_message = FlexSendMessage(alt_text="hello", contents=data)
         line_bot_api.reply_message(
             user_token,
             [
                 sticker_message,
-                message,
+                flex_message,
             ]
         )
 

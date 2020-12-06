@@ -1,22 +1,15 @@
 {
   "type": "bubble",
-  "header": {
-    "type": "box",
-    "layout": "vertical",
-    "contents": [
-      {
-        "type": "text",
-        "text": "Dicoding Academy",
-        "weight": "bold"
-      }
-    ]
-  },
   "hero": {
     "type": "image",
-    "url": "https://www.dicoding.com/images/small/academy/menjadi_android_developer_expert_logo_041217105708.png",
+    "url": "https://i.ibb.co/Qc9gt43/Announcement-Perwakilan-TPB-Live-Instastory.jpg",
     "size": "full",
-    "aspectRatio": "4:3",
-    "aspectMode": "cover"
+    "aspectRatio": "20:13",
+    "aspectMode": "cover",
+    "action": {
+      "type": "uri",
+      "uri": "http://linecorp.com/"
+    }
   },
   "body": {
     "type": "box",
@@ -24,51 +17,84 @@
     "contents": [
       {
         "type": "text",
-        "text": "Menjadi Android Developer Expert",
-        "size": "sm",
-        "color": "#c9302c",
-        "weight": "bold"
+        "text": "Hearing Perwakilan TPB",
+        "weight": "bold",
+        "size": "xl"
       },
       {
-        "type": "text",
-        "text": "oleh: Dicoding Indonesia",
-        "size": "sm",
-        "color": "#c9302c"
-      },
-      {
-        "type": "text",
-        "text": "Jadilah expert di dunia pemrograman Android. Materi disusun oleh Dicoding sebagai Google Authorized Training Partner.",
-        "size": "sm",
-        "wrap": true,
-        "margin": "lg"
+        "type": "box",
+        "layout": "vertical",
+        "margin": "lg",
+        "spacing": "sm",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "baseline",
+            "spacing": "sm",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Place",
+                "color": "#aaaaaa",
+                "size": "sm",
+                "flex": 1
+              },
+              {
+                "type": "text",
+                "text": "MS TEAMS STEI 20",
+                "wrap": true,
+                "color": "#666666",
+                "size": "sm",
+                "flex": 5
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "baseline",
+            "spacing": "sm",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Time",
+                "color": "#aaaaaa",
+                "size": "sm",
+                "flex": 1
+              },
+              {
+                "type": "text",
+                "text": "Selasa, 19:00 - tbh",
+                "wrap": true,
+                "color": "#666666",
+                "size": "sm",
+                "flex": 5
+              }
+            ]
+          }
+        ]
       }
     ]
   },
   "footer": {
     "type": "box",
-    "layout": "horizontal",
+    "layout": "vertical",
     "spacing": "sm",
     "contents": [
       {
         "type": "button",
-        "style": "secondary",
+        "style": "link",
+        "height": "sm",
         "action": {
-          "type": "postback",
-          "label": "Trial",
-          "displayText": "Trial",
-          "data": "Trial"
+          "type": "uri",
+          "label": "WEBSITE",
+          "uri": "https://teams.microsoft.com/l/team/19%3acd149188096a4217bff377e9c91d1d2e%40thread.tacv2/conversations?groupId=537c0aee-d03e-4928-b2b8-fdb01f72f2e1&tenantId=db6e1183-4c65-405c-82ce-7cd53fa6e9dc"
         }
       },
       {
-        "type": "button",
-        "style": "primary",
-        "action": {
-          "type": "postback",
-          "label": "Daftar",
-          "displayText": "Daftar",
-          "data": "Daftar"
-        }
+        "type": "spacer",
+        "size": "sm"
       }
-    ]
+    ],
+    "flex": 0
   }
 }
