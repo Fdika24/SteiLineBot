@@ -12,11 +12,24 @@ def command(event):
     sticker_message = StickerSendMessage(  # this is sticker
         package_id='1',
         sticker_id='7', )
-    # do not bother to edit anything
+    # do not bother to edit anything here
     f = open('flex.json', )
     data = json.load(f)
     # batas suci
     if user_msg == 'einainfo':
+        flex_message = FlexSendMessage(alt_text="hello", contents=data)
+        line_bot_api.reply_message(
+            user_token,
+            [
+                flex_message,
+                TextSendMessage(
+                    text='Malem All :)\nKenalin namaku Eina, personal asistant buat para anggota STEI20.\nJadi, '
+                         'aku mau nyampein nih kalau besok ada forum angkatan. Forum ini bakal diadain jam 19.00 WIB '
+                         'hari selasa.\nJadi, jangan pada telat ya!! '
+                            ),
+                sticker_message,
+            ]
+        )
         line_bot_api.reply_message(user_token,[
             ImageSendMessage(
                 original_content_url='https://i.ibb.co/Qc9gt43/Announcement-Perwakilan-TPB-Live-Instastory.jpg',
