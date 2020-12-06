@@ -1,5 +1,5 @@
 from linebot.models import StickerSendMessage, TextSendMessage, SourceGroup, SourceRoom
-from linebot.models import FlexSendMessage,BubbleContainer,ImageComponent,URIAction,ImageSendMessage
+from linebot.models import FlexSendMessage,ImageSendMessage
 from tokens import line_bot_api
 
 
@@ -39,12 +39,15 @@ def command(event):
         )
 
     if user_msg == 'flexmsg':
-        flex_message = FlexSendMessage( # otw ngab
+        flex_message = FlexSendMessage(
         )
-        message = FlexSendMessage(alt_text="hello", contents=flex_message)
+        message = FlexSendMessage(alt_text="hello")
         line_bot_api.reply_message(
             user_token,
-            message,
+            [
+                sticker_message,
+
+            ]
         )
 
     if user_msg == 'notify_me':  # this will push something to the user , to be continue
