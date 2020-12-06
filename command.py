@@ -17,20 +17,21 @@ def command(event):
     f = open('flex.json', )
     data = json.load(f)
     # batas suci
-    if user_msg == 'einainfo':
-        flex_message = FlexSendMessage(alt_text="hello", contents=data)
-        line_bot_api.reply_message(
-            user_token,
-            [
-                flex_message,
-                TextSendMessage(
-                    text='Malem All :)\n Aku mau ngomong nih. '
-                         'Aku mau nyampein nih kalau besok ada forum angkatan. Forum ini bakal diadain jam 19.00 WIB '
-                         'hari selasa.\nJadi, jangan pada telat ya!! '
-                ),
-                sticker_message,
-            ]
-        )
+    if profile.display_name.lower() == 'farhandika':
+        if user_msg == 'einainfo':
+            flex_message = FlexSendMessage(alt_text="hello", contents=data)
+            line_bot_api.reply_message(
+                user_token,
+                [
+                    flex_message,
+                    TextSendMessage(
+                        text='Malem All :)\n Aku mau ngomong nih. '
+                             'Aku mau nyampein nih kalau besok ada forum angkatan. Forum ini bakal diadain jam 19.00 WIB '
+                             'hari selasa.\nJadi, jangan pada telat ya!! '
+                    ),
+                    sticker_message,
+                ]
+            )
 
     if user_msg == 'myprofile':
         line_bot_api.reply_message(

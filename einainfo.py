@@ -1,0 +1,2 @@
+def einainfo(event):
+    pass
