@@ -30,20 +30,6 @@ def command(event):
                 sticker_message,
             ]
         )
-        line_bot_api.reply_message(user_token,[
-            ImageSendMessage(
-                original_content_url='https://i.ibb.co/Qc9gt43/Announcement-Perwakilan-TPB-Live-Instastory.jpg',
-                preview_image_url='https://i.ibb.co/Qc9gt43/Announcement-Perwakilan-TPB-Live-Instastory.jpg'
-            ),
-            TextSendMessage(text='''Malem All :)
-            Kenalin namaku Eina, personal asistant buat para anggota STEI20,
-            jadi, aku mau nyampein nih kalau besok ada forum angkatan.
-            Forum ini bakal diadain pada jam 19.00 WIB.
-            Jadi, jangan pada telat ya!!
-            '''),
-            sticker_message
-
-        ],)
 
     if user_msg == 'myprofile':
         line_bot_api.reply_message(
