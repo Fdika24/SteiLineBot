@@ -1,16 +1,13 @@
 from flask import Flask, request, abort, redirect, json , jsonify
 
 from linebot.exceptions import InvalidSignatureError
-from linebot.models import MessageEvent, TextMessage
+from linebot.models import MessageEvent, TextMessage, JoinEvent, TextSendMessage
 
-from tokens import handler  # token
+from tokens import handler, line_bot_api  # token
 from command import command
 
 
 app = Flask(__name__)
-
-
-@app.route('/add', methods=['POST'])
 
 
 @app.route('/')
@@ -40,6 +37,13 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     command(event)
+
+
+@handler.add(JoinEvent)
+def handle_join(event):
+    line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text='Joined this ' + event.source.type))
 
 
 if __name__ == '__main__':
