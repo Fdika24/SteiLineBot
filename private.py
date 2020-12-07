@@ -1,4 +1,4 @@
-from linebot.models import StickerSendMessage, TextSendMessage, SourceGroup, SourceRoom
+from linebot.models import StickerSendMessage, TextSendMessage, SourceGroup, SourceRoom, FlexSendMessage
 from tokens import line_bot_api
 
 from einainfo import einainfo
@@ -28,16 +28,28 @@ def command(event):
                 sticker_message,
             ],
         )
-
-    if user_msg == 'notify_me':  # this will push something to the user , to be continue
+    if user_msg.startswith('push '):
+        '''
+        Cara pemakaian :
+        push {nomor pack} {nomor sticker} {pesan}
+        ex :push 1 1 maap yah
+        '''
+        data = user_msg.split(' ')[1:]  # this will push something to the group, under consturction
+        # group = data[0]
         line_bot_api.push_message(
-            event.source.user_id, [
-                TextSendMessage(text='PUSH!'),
+            'C1f17f56f5d1d0f3f42bab2151b89cd43', [
+                FlexSendMessage(alt_text="hello", contents=json.load(open('flex.json', ))),
+                TextSendMessage(text=' '.join(data[2:])),
+                StickerSendMessage(
+                    package_id=data[0],
+                    sticker_id= data[1],
+                )
             ]
         )
     if user_msg.startswith('send_all '):  # Brodcast to all who added eina chan
         line_bot_api.broadcast(
             [
+                FlexSendMessage(alt_text="hello", contents=json.load(open('flex.json', ))),
                 TextSendMessage(text=' '.join(user_msg.split(' ')[1:])),
             ]
         )

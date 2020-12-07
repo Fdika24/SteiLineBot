@@ -23,7 +23,7 @@ def group_cmd(event):
         data = user_msg.split(' ')[1:]  # this will push something to the group, under consturction
         # group = data[0]
         line_bot_api.push_message(
-            'C1f17f56f5d1d0f3f42bab2151b89cd43', [
+            'C1528a299c9ba3a5b556fd2148da8b53d', [
                 TextSendMessage(text=' '.join(data)),
             ]
         )
