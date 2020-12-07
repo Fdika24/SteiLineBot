@@ -15,7 +15,7 @@ def group_cmd(event):
 
     if user_msg == 'maap typo':
         line_bot_api.push_message(
-            user_token,
+            'Ude2d6760c5eba4781184c4c8d2a0b94c',
             TextSendMessage(text=f'Group id : {group}')
         )
 
