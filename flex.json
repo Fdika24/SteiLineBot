@@ -2,13 +2,13 @@
   "type": "bubble",
   "hero": {
     "type": "image",
-    "url": "https://i.ibb.co/Qc9gt43/Announcement-Perwakilan-TPB-Live-Instastory.jpg",
+    "url": "https://cdn.shopify.com/s/files/1/2489/6536/products/AM-520002-RW_2048x.jpg?v=1569303985",
     "size": "full",
     "aspectRatio": "20:13",
     "aspectMode": "cover",
     "action": {
       "type": "uri",
-      "uri": "https://teams.microsoft.com/l/team/19%3acd149188096a4217bff377e9c91d1d2e%40thread.tacv2/conversations?groupId=537c0aee-d03e-4928-b2b8-fdb01f72f2e1&tenantId=db6e1183-4c65-405c-82ce-7cd53fa6e9dc"
+      "uri": "http://bit.ly/STEI2020"
     }
   },
   "body": {
@@ -17,9 +17,11 @@
     "contents": [
       {
         "type": "text",
-        "text": "Hearing Perwakilan TPB",
+        "text": "H-1",
         "weight": "bold",
-        "size": "xl"
+        "size": "xxl",
+        "decoration": "underline",
+        "color": "#CB4335"
       },
       {
         "type": "box",
@@ -34,36 +36,7 @@
             "contents": [
               {
                 "type": "text",
-                "text": "Place",
-                "color": "#aaaaaa",
-                "size": "sm",
-                "flex": 1
-              },
-              {
-                "type": "text",
-                "text": "MS TEAMS STEI 20",
-                "wrap": true,
-                "color": "#666666",
-                "size": "sm",
-                "flex": 5
-              }
-            ]
-          },
-          {
-            "type": "box",
-            "layout": "baseline",
-            "spacing": "sm",
-            "contents": [
-              {
-                "type": "text",
-                "text": "Time",
-                "color": "#aaaaaa",
-                "size": "sm",
-                "flex": 1
-              },
-              {
-                "type": "text",
-                "text": "Selasa, 19:00 - tba",
+                "text": "Penutupan pendaftaran staff kementrian angkatan",
                 "wrap": true,
                 "color": "#666666",
                 "size": "sm",
@@ -86,8 +59,8 @@
         "height": "sm",
         "action": {
           "type": "uri",
-          "label": "WEBSITE",
-          "uri": "https://teams.microsoft.com/l/team/19%3acd149188096a4217bff377e9c91d1d2e%40thread.tacv2/conversations?groupId=537c0aee-d03e-4928-b2b8-fdb01f72f2e1&tenantId=db6e1183-4c65-405c-82ce-7cd53fa6e9dc"
+          "label": "DAFTAR",
+          "uri": "http://bit.ly/STEI2020"
         }
       },
       {

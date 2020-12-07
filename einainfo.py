@@ -13,12 +13,12 @@ def einainfo(user_token):
         [
             flex_message,
             TextSendMessage(
-                text='Malem All :)\n Aku mau ngomong nih.'
-                     'Aku mau nyampein kalau besok ada forum angkatan. Forum ini bakal diadain jam 19.00 WIB '
-                     'hari selasa.\nJadi, jangan pada telat ya!! '
+                text='Malem All :)\n'
+                     'Mau ngingetin aja, penutupan pendaftaran staff kementrian udah tinggal bentar lagi loh'
+                     '\nJadi, jangan lupa buat daftar bagi yang berminat untuk gabung!! '
             ),
             StickerSendMessage(  # this is sticker
                 package_id='1',
-                sticker_id='7', )
+                sticker_id='13', )
         ]
     )
