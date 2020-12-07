@@ -49,7 +49,7 @@ def command(event):
     if user_msg.startswith('send_all '):  # Brodcast to all who added eina chan
         line_bot_api.broadcast(
             [
-                FlexSendMessage(alt_text="hello", contents=json.load(open('flex.json', ))),
+                # FlexSendMessage(alt_text="hello", contents=json.load(open('flex.json', ))),
                 TextSendMessage(text=' '.join(user_msg.split(' ')[1:])),
             ]
         )
