@@ -21,7 +21,7 @@ def group_cmd(event):
 
     if user_msg.startswith('push '):
         data = user_msg.split(' ')[1:]  # this will push something to the group, under consturction
-        group = data[0]
+        # group = data[0]
         line_bot_api.push_message(
             group, [
                 TextSendMessage(text=' '.join(data[1:])),
