@@ -8,7 +8,7 @@ import json
 
 # this where we do our command n shits
 def command(event):
-    user_msg = event.message.text.lower()  # user's msg
+    user_msg = event.message.text  # user's msg
     user_token = event.reply_token  # user's token session
     profile = line_bot_api.get_profile(event.source.user_id)  # get user's id
     sticker_message = StickerSendMessage(  # this is sticker
