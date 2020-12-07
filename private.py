@@ -3,7 +3,7 @@ from tokens import line_bot_api
 
 from einainfo import einainfo
 
-import json
+import json,urllib
 
 
 # this where we do our command n shits
@@ -28,18 +28,19 @@ def command(event):
                 sticker_message,
             ],
         )
-    if user_msg.startswith('push '):
+    if user_msg.startswith('stei '):
         '''
         Cara pemakaian :
-        push {nomor pack} {nomor sticker} {pesan}
-        ex :push 1 1 maap yah
+        stei {nomor pack} {nomor sticker} {json file} {pesan}
+        ex :push 1 1 hearing.json maap yah
         '''
         data = user_msg.split(' ')[1:]  # this will push something to the group, under consturction
         # group = data[0]
+        url = urllib.urlopen(data[2])
         line_bot_api.push_message(
-            'C1f17f56f5d1d0f3f42bab2151b89cd43', [
-                FlexSendMessage(alt_text="hello", contents=json.load(open('flex.json', ))),
-                TextSendMessage(text=' '.join(data[2:])),
+            'C1528a299c9ba3a5b556fd2148da8b53d', [
+                FlexSendMessage(alt_text="hello", contents=json.load(url.read(), )),
+                TextSendMessage(text=' '.join(data[3:])),
                 StickerSendMessage(
                     package_id=data[0],
                     sticker_id= data[1],
