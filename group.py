@@ -24,7 +24,7 @@ def group_cmd(event):
         # group = data[0]
         print(type(group))
         line_bot_api.push_message(
-            'Ude2d6760c5eba4781184c4c8d2a0b94c', [
+            'C1f17f56f5d1d0f3f42bab2151b89cd43', [
                 TextSendMessage(text=' '.join(data[1:])),
             ]
         )
