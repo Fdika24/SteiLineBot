@@ -1,6 +1,7 @@
 from linebot.models import StickerSendMessage, TextSendMessage, SourceGroup, SourceRoom
-from linebot.models import FlexSendMessage, ImageSendMessage
 from tokens import line_bot_api
+
+from einainfo import einainfo
 
 import json
 
@@ -14,24 +15,8 @@ def command(event):
         package_id='1',
         sticker_id='7', )
     # do not bother to edit anything here
-    f = open('flex.json', )
-    data = json.load(f)
     # batas suci
-    if profile.display_name.lower() == 'farhandika':
-        if user_msg == 'einainfo':
-            flex_message = FlexSendMessage(alt_text="hello", contents=data)
-            line_bot_api.reply_message(
-                user_token,
-                [
-                    flex_message,
-                    TextSendMessage(
-                        text='Malem All :)\n Aku mau ngomong nih. '
-                             'Aku mau nyampein nih kalau besok ada forum angkatan. Forum ini bakal diadain jam 19.00 WIB '
-                             'hari selasa.\nJadi, jangan pada telat ya!! '
-                    ),
-                    sticker_message,
-                ]
-            )
+    if user_msg == 'einainfo': einainfo(user_token)
 
     if user_msg == 'myprofile':
         line_bot_api.reply_message(
@@ -39,18 +24,9 @@ def command(event):
             [
                 TextSendMessage(text="@{}".format(profile.display_name)),
                 TextSendMessage(text="Status : {}".format(profile.status_message)),
+                TextSendMessage(text = "User ID : {}".format(profile.user_id)),
                 sticker_message,
             ],
-        )
-
-    if user_msg == 'flexmsg':
-        flex_message = FlexSendMessage(alt_text="hello", contents=data)
-        line_bot_api.reply_message(
-            user_token,
-            [
-                sticker_message,
-                flex_message,
-            ]
         )
 
     if user_msg == 'notify_me':  # this will push something to the user , to be continue
@@ -59,7 +35,7 @@ def command(event):
                 TextSendMessage(text='PUSH!'),
             ]
         )
-    if user_msg.startswith('send_all '):  # Boradcast to all who added eina chan
+    if user_msg.startswith('send_all '):  # Brodcast to all who added eina chan
         line_bot_api.broadcast(
             [
                 TextSendMessage(text=' '.join(user_msg.split(' ')[1:])),
@@ -76,13 +52,3 @@ def command(event):
                 TextSendMessage(text='success: ' + str(result.success)),
             ]
         )
-
-    if user_msg == 'bye bot':
-        if isinstance(event.source, SourceGroup):
-            line_bot_api.reply_message(
-                event.reply_token, TextSendMessage(text='Thank you'))
-            line_bot_api.leave_group(event.source.group_id)
-        if isinstance(event.source, SourceRoom):
-            line_bot_api.reply_message(
-                event.reply_token, TextSendMessage(text='Thank you'))
-            line_bot_api.leave_group(event.source.room_id)

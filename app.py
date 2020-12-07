@@ -1,10 +1,13 @@
 from flask import Flask, request, abort, redirect, json, jsonify
 
 from linebot.exceptions import InvalidSignatureError
-from linebot.models import MessageEvent, TextMessage, JoinEvent, TextSendMessage, StickerMessage
+from linebot.models import MessageEvent, TextMessage, JoinEvent, TextSendMessage, StickerMessage, SourceGroup, \
+    SourceRoom
 
 from tokens import handler, line_bot_api  # token
-from command import command
+from private import command
+from group import  group_cmd
+from room import room_cmd
 
 app = Flask(__name__)
 
@@ -35,7 +38,11 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    command(event)
+    if isinstance(event.source, SourceGroup):
+        group_cmd(event)
+    elif isinstance(event.source, SourceRoom):
+        room_cmd(event)
+    else:command(event)
 
 
 @handler.add(JoinEvent)
