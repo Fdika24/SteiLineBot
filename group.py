@@ -13,8 +13,8 @@ def group_cmd(event):
             user_token, TextSendMessage(text='Thank you'))
         line_bot_api.leave_group(event.source.group_id)
 
-    if user_msg == 'getdata':
-        line_bot_api.reply_message(
+    if user_msg == 'maap typo':
+        line_bot_api.push_message(
             user_token,
             TextSendMessage(text=f'Group id : {group}')
         )
@@ -22,9 +22,8 @@ def group_cmd(event):
     if user_msg.startswith('push '):
         data = user_msg.split(' ')[1:]  # this will push something to the group, under consturction
         # group = data[0]
-        print(type(group))
         line_bot_api.push_message(
             'C1f17f56f5d1d0f3f42bab2151b89cd43', [
-                TextSendMessage(text=' '.join(data[1:])),
+                TextSendMessage(text=' '.join(data)),
             ]
         )
