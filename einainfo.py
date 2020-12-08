@@ -11,11 +11,10 @@ def einainfo(user_token):
     api.reply_message(
         user_token,
         [
-            flex_message,
             TextSendMessage(
                 text='Malem All :)\n'
-                     'Mau ngingetin aja, penutupan pendaftaran staff kementrian udah tinggal bentar lagi loh'
-                     '\nJadi, jangan lupa buat daftar bagi yang berminat untuk gabung!! '
+                     'Mau ngingetin aja, Jam 19.00 nanti ada hearing calon perwakilan tpb'
+                     '\nJangan lupa dateng all :) '
             ),
             StickerSendMessage(  # this is sticker
                 package_id='1',
