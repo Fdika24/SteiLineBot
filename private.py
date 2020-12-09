@@ -35,7 +35,9 @@ def command(event):
                 layout='vertical',
                 contents=[
                     # title
-                    TextComponent(text='Brown Cafe', weight='bold', size='xl'),
+                    TextComponent(text=new_resp['titles']['en'],
+                                  weight='bold',
+                                  size='xl'),
                     # review
                     BoxComponent(
                         layout='baseline',
