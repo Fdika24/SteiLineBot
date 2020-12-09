@@ -65,7 +65,7 @@ def command(event):
                                         flex=1
                                     ),
                                     TextComponent(
-                                        text=new_resp['synopsis'],
+                                        text='new_resp[]',
                                         wrap=True,
                                         color='#666666',
                                         size='sm',
@@ -84,7 +84,7 @@ def command(event):
                                         flex=1
                                     ),
                                     TextComponent(
-                                        text=new_resp['episodeCount'],
+                                        text="10:00 - 23:00",
                                         wrap=True,
                                         color='#666666',
                                         size='sm',
