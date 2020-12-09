@@ -59,7 +59,7 @@ def command(event):
                                 spacing='sm',
                                 contents=[
                                     TextComponent(
-                                        text='Synopsis',
+                                        text='About',
                                         color='#aaaaaa',
                                         size='sm',
                                         flex=1
@@ -78,17 +78,17 @@ def command(event):
                                 spacing='sm',
                                 contents=[
                                     TextComponent(
-                                        text='Total Episodes',
+                                        text='Status',
                                         color='#aaaaaa',
                                         size='sm',
                                         flex=1
                                     ),
                                     TextComponent(
-                                        text="10:00 - 23:00",
+                                        text=new_resp['status'],
                                         wrap=True,
                                         color='#666666',
                                         size='sm',
-                                        flex=5,
+
                                     ),
                                 ],
                             ),
