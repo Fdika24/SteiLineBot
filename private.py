@@ -22,7 +22,7 @@ def command(event):
         bubble = BubbleContainer(
             direction='ltr',
             hero=ImageComponent(
-                url='https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png',
+                url='https://media.kitsu.io/anime/poster_images/1/original.jpg?1597604210',
                 size='full',
                 aspect_ratio='20:13',
                 aspect_mode='cover',
@@ -38,8 +38,7 @@ def command(event):
                         layout='baseline',
                         margin='md',
                         contents=[
-                            TextComponent(text='4.0', size='sm', color='#999999', margin='md',
-                                          flex=0)
+                            TextComponent(text='4.0', size='sm', color='#999999')
                         ]
                     ),
                     # info
