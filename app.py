@@ -2,7 +2,7 @@ from flask import Flask, request, abort, redirect, json, jsonify
 
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, JoinEvent, TextSendMessage, StickerMessage, SourceGroup, \
-    SourceRoom
+    SourceRoom, FollowEvent
 
 from tokens import handler, line_bot_api  # token
 from private import command
@@ -45,6 +45,17 @@ def handle_message(event):
     else:command(event)
 
 
+@handler.add(FollowEvent)
+def handle_follow(event):
+    line_bot_api.reply_message(
+        event.reply_token,[
+            TextSendMessage(text='Terima kasih udah menerima Eina-chan di group chat anda. \n'),
+            TextSendMessage(text='Hallo, perkenalkan namaku Eina-chan, Personal bot kalian.\n'
+                                 'Untuk saat ini, belum banyak yang bisa aku lakukan, jadi mohon bantuannya. '),
+            TextSendMessage(text='Untuk mengetahui lebih lanjut tentang eina chat, kalian boleh ketik info_eina')
+        ])
+
+
 @handler.add(JoinEvent)
 def handle_join(event):
     line_bot_api.reply_message(
@@ -52,6 +63,7 @@ def handle_join(event):
             TextSendMessage(text='Terima kasih udah menerima Eina-chan di group chat anda. \n'),
             TextSendMessage(text='Hallo, perkenalkan namaku Eina-chan, Personal bot kalian.\n'
                                  'Untuk saat ini, belum banyak yang bisa aku lakukan, jadi mohon bantuannya. '),
+            TextSendMessage(text='Eina belum bisa ngapa-ngapain nih grup *cry. Kalau pengen kenal lebih lanjut add eina aja langsung :)'),
             StickerMessage(
                 package_id=1,
                 sticker_id=5,

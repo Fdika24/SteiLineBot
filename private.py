@@ -119,4 +119,17 @@ def command(event):
             user_token,
             message
         )
+    elif user_msg == 'info_eina':
+        line_bot_api.reply_message(
+            user_token,
+            TextSendMessage(text='Eina sih simpel aja, Eina adalah bot pencari anime, untuk mencari sipnosis, rating, '
+                                 'maupun banyak episode cukup dengan mengetik anime judul \n '
+                                 'contohnya : anime naruto. Jangan lupa ya, untuk commandnya huruf kecil semua')
+        )
+    else: line_bot_api.reply_message(
+        user_token,
+        TextSendMessage(text='Maaf banget, eina kyknya belum bisa mengerti nih maunya kamu apa *cry. Mungkin kamu '
+                             'boleh nih liat lagi peraturan eina dengan cara ketik info_eina')
+    )
+
 
