@@ -19,13 +19,13 @@ def command(event):
     # batas suci
     if user_msg.startswith('anime '):  # cara pakai anime {nama anime}
         response = requests.get(f'https://kitsu.io/api/edge/anime?filter[text]={user_msg.split()[1:]}')
-        print(response.status_code)
-        new_resp = response.json()['data'][0]
-        print(new_resp)
+        # print(response.status_code)
+        new_resp = response.json()['data'][0]['attributes']
+        # print(new_resp)
         bubble = BubbleContainer(
             direction='ltr',
             hero=ImageComponent(
-                url='https://media.kitsu.io/anime/poster_images/1/original.jpg?1597604210',
+                url=new_resp['posterImage']['original'],
                 size='full',
                 aspect_ratio='20:13',
                 aspect_mode='cover',
@@ -35,13 +35,13 @@ def command(event):
                 layout='vertical',
                 contents=[
                     # title
-                    TextComponent(text='Brown Cafe', weight='bold', size='xl'),
+                    TextComponent(text=new_resp['titles']['en'], weight='bold', size='xl'),
                     # review
                     BoxComponent(
                         layout='baseline',
                         margin='md',
                         contents=[
-                            TextComponent(text='4.0', size='sm', color='#999999')
+                            TextComponent(text=new_resp['averageRating'], size='sm', color='#999999')
                         ]
                     ),
                     # info
@@ -55,13 +55,13 @@ def command(event):
                                 spacing='sm',
                                 contents=[
                                     TextComponent(
-                                        text='Place',
+                                        text='Synopsis',
                                         color='#aaaaaa',
                                         size='sm',
                                         flex=1
                                     ),
                                     TextComponent(
-                                        text='Shinjuku, Tokyo',
+                                        text=new_resp['synopsis'],
                                         wrap=True,
                                         color='#666666',
                                         size='sm',
@@ -74,13 +74,13 @@ def command(event):
                                 spacing='sm',
                                 contents=[
                                     TextComponent(
-                                        text='Time',
+                                        text='Total Episode',
                                         color='#aaaaaa',
                                         size='sm',
                                         flex=1
                                     ),
                                     TextComponent(
-                                        text="10:00 - 23:00",
+                                        text=new_resp['episodeCount'],
                                         wrap=True,
                                         color='#666666',
                                         size='sm',
