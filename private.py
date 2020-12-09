@@ -43,7 +43,9 @@ def command(event):
                         layout='baseline',
                         margin='md',
                         contents=[
-                            TextComponent(text='4.0', size='sm', color='#999999')
+                            TextComponent(text=new_resp['averageRating']
+                                          , size='sm'
+                                          , color='#999999')
                         ]
                     ),
                     # info
@@ -57,13 +59,13 @@ def command(event):
                                 spacing='sm',
                                 contents=[
                                     TextComponent(
-                                        text='Place',
+                                        text='Synopsis',
                                         color='#aaaaaa',
                                         size='sm',
                                         flex=1
                                     ),
                                     TextComponent(
-                                        text='Shinjuku, Tokyo',
+                                        text=new_resp['synopsis'],
                                         wrap=True,
                                         color='#666666',
                                         size='sm',
@@ -76,13 +78,13 @@ def command(event):
                                 spacing='sm',
                                 contents=[
                                     TextComponent(
-                                        text='Time',
+                                        text='Total Episodes',
                                         color='#aaaaaa',
                                         size='sm',
                                         flex=1
                                     ),
                                     TextComponent(
-                                        text="10:00 - 23:00",
+                                        text=new_resp['episodeCount'],
                                         wrap=True,
                                         color='#666666',
                                         size='sm',
