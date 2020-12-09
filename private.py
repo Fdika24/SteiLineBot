@@ -19,7 +19,7 @@ def command(event):
     # batas suci
     if user_msg.startswith('anime '):  # cara pakai anime {nama anime}
         response = requests.get(f'https://kitsu.io/api/edge/anime?filter[text]={user_msg.split()[1:]}')
-        # print(response.status_code)
+        print(response.status_code)
         new_resp = response.json()['data'][0]['attributes']
         # print(new_resp)
         bubble = BubbleContainer(
