@@ -1,10 +1,10 @@
-from linebot.models import StickerSendMessage, TextSendMessage, SourceGroup, SourceRoom, FlexSendMessage, \
+from linebot.models import StickerSendMessage, TextSendMessage, FlexSendMessage, \
     SeparatorComponent, ButtonComponent, URIAction, BoxComponent, TextComponent, ImageComponent, BubbleContainer
 from tokens import line_bot_api
 
 from einainfo import einainfo
 
-import json,requests
+import requests
 
 
 # this where we do our command n shits
@@ -21,6 +21,7 @@ def command(event):
         response = requests.get(f'https://kitsu.io/api/edge/anime?filter[text]={user_msg.split()[1:]}')
         print(response.status_code)
         new_resp = response.json()['data'][0]['attributes']
+        title = new_resp['titles']['en_jp']
         # print(new_resp)
         bubble = BubbleContainer(
             direction='ltr',
@@ -29,13 +30,14 @@ def command(event):
                 size='full',
                 aspect_ratio='20:13',
                 aspect_mode='cover',
-                action=URIAction(uri='http://example.com', label='label')
+                action=URIAction(uri='https://kitsu.io/anime/{}'.format('-'.join(title.split()))
+                                 , label='label')
             ),
             body=BoxComponent(
                 layout='vertical',
                 contents=[
                     # title
-                    TextComponent(text=new_resp['titles']['en_jp'],
+                    TextComponent(text=title,
                                   weight='bold',
                                   size='xl'),
                     # review
@@ -88,6 +90,7 @@ def command(event):
                                         wrap=True,
                                         color='#666666',
                                         size='sm',
+                                        flex=5,
 
                                     ),
                                 ],
@@ -100,19 +103,13 @@ def command(event):
                 layout='vertical',
                 spacing='sm',
                 contents=[
-                    # callAction
-                    ButtonComponent(
-                        style='link',
-                        height='sm',
-                        action=URIAction(label='CALL', uri='tel:000000'),
-                    ),
                     # separator
                     SeparatorComponent(),
                     # websiteAction
                     ButtonComponent(
                         style='link',
                         height='sm',
-                        action=URIAction(label='WEBSITE', uri="https://example.com")
+                        action=URIAction(label='WEBSITE', uri='https://kitsu.io/anime/{}'.format('-'.join(title.split())))
                     )
                 ]
             ),
