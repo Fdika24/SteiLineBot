@@ -9,7 +9,6 @@ import json,requests
 
 # this where we do our command n shits
 def command(event):
-    response = requests.get('https://kitsu.io/api/edge/anime?filter[text]=$kimetsu')
     user_msg = event.message.text  # user's msg
     user_token = event.reply_token  # user's token session
     profile = line_bot_api.get_profile(event.source.user_id)  # get user's id
@@ -18,11 +17,12 @@ def command(event):
         sticker_id='7', )
     # do not bother to edit anything here
     # batas suci
-    if user_msg == 'flex':
+    if user_msg.startswith('anime '):  # cara pakai anime {nama anime}
+        response = requests.get(f'https://kitsu.io/api/edge/anime?filter[text]={user_msg.split()[1:]}').json()['data']['0']['attributes']
         bubble = BubbleContainer(
             direction='ltr',
             hero=ImageComponent(
-                url='https://media.kitsu.io/anime/poster_images/1/original.jpg?1597604210',
+                url=response['posterImage']['original'],
                 size='full',
                 aspect_ratio='20:13',
                 aspect_mode='cover',
@@ -58,33 +58,7 @@ def command(event):
                                         flex=1
                                     ),
                                     TextComponent(
-                                        text='Another day, another bounty—such is the life of the often unlucky crew '
-                                             'of the Bebop. However, this routine is interrupted when Faye, '
-                                             'who is chasing a fairly worthless target on Mars, witnesses an oil '
-                                             'tanker suddenly explode, causing mass hysteria. As casualties mount due '
-                                             'to a strange disease spreading through the smoke from the blast, '
-                                             'a whopping three hundred million woolong price is placed on the head of '
-                                             'the supposed perpetrator.\nWith lives at stake and a solution to their '
-                                             'money problems in sight, the Bebop crew springs into action. Spike, '
-                                             'Jet, Faye, and Edward, followed closely by Ein, split up to pursue '
-                                             'different leads across Alba City. Through their individual '
-                                             'investigations, they discover a cover-up scheme involving a '
-                                             'pharmaceutical company, revealing a plot that reaches much further than '
-                                             'the ragtag team of bounty hunters could have realized.\n[Written by MAL '
-                                             'Rewrite]","description":"Another day, another bounty—such is the life '
-                                             'of the often unlucky crew of the Bebop. However, this routine is '
-                                             'interrupted when Faye, who is chasing a fairly worthless target on '
-                                             'Mars, witnesses an oil tanker suddenly explode, causing mass hysteria. '
-                                             'As casualties mount due to a strange disease spreading through the '
-                                             'smoke from the blast, a whopping three hundred million woolong price is '
-                                             'placed on the head of the supposed perpetrator.\nWith lives at stake '
-                                             'and a solution to their money problems in sight, the Bebop crew springs '
-                                             'into action. Spike, Jet, Faye, and Edward, followed closely by Ein, '
-                                             'split up to pursue different leads across Alba City. Through their '
-                                             'individual investigations, they discover a cover-up scheme involving a '
-                                             'pharmaceutical company, revealing a plot that reaches much further than '
-                                             'the ragtag team of bounty hunters could have realized.\n[Written by MAL '
-                                             'Rewrite]',
+                                        text='Shinjuku, Tokyo',
                                         wrap=True,
                                         color='#666666',
                                         size='sm',
