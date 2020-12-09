@@ -43,7 +43,7 @@ def command(event):
                         layout='baseline',
                         margin='md',
                         contents=[
-                            TextComponent(text=new_resp['averageRating']
+                            TextComponent(text='{}/100'.format(new_resp['averageRating'])
                                           , size='sm'
                                           , color='#999999')
                         ]
@@ -65,7 +65,7 @@ def command(event):
                                         flex=1
                                     ),
                                     TextComponent(
-                                        text='new_resp[]',
+                                        text=new_resp['synopsis'],
                                         wrap=True,
                                         color='#666666',
                                         size='sm',
