@@ -21,7 +21,7 @@ def command(event):
         response = requests.get(f'https://kitsu.io/api/edge/anime?filter[text]={user_msg.split()[1:]}')
         print(response.status_code)
         new_resp = response.json()['data'][0]['attributes']
-        print(new_resp)
+        # print(new_resp)
         bubble = BubbleContainer(
             direction='ltr',
             hero=ImageComponent(
@@ -35,7 +35,7 @@ def command(event):
                 layout='vertical',
                 contents=[
                     # title
-                    TextComponent(text=new_resp['titles']['en'],
+                    TextComponent(text=new_resp['titles']['en_jp'],
                                   weight='bold',
                                   size='xl'),
                     # review
