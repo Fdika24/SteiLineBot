@@ -1,13 +1,15 @@
-from linebot.models import StickerSendMessage, TextSendMessage, SourceGroup, SourceRoom, FlexSendMessage
+from linebot.models import StickerSendMessage, TextSendMessage, SourceGroup, SourceRoom, FlexSendMessage, \
+    SeparatorComponent, ButtonComponent, URIAction, BoxComponent, TextComponent, ImageComponent, BubbleContainer
 from tokens import line_bot_api
 
 from einainfo import einainfo
 
-import json
+import json,requests
 
 
 # this where we do our command n shits
 def command(event):
+    response = requests.get('https://kitsu.io/api/edge/anime?filter[text]=$kimetsu')
     user_msg = event.message.text  # user's msg
     user_token = event.reply_token  # user's token session
     profile = line_bot_api.get_profile(event.source.user_id)  # get user's id
@@ -16,51 +18,102 @@ def command(event):
         sticker_id='7', )
     # do not bother to edit anything here
     # batas suci
-    if user_msg == 'einainfo': einainfo(user_token)
-
-    if user_msg == 'myprofile':
+    if user_msg == 'flex':
+        bubble = BubbleContainer(
+            direction='ltr',
+            hero=ImageComponent(
+                url='https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png',
+                size='full',
+                aspect_ratio='20:13',
+                aspect_mode='cover',
+                action=URIAction(uri='http://example.com', label='label')
+            ),
+            body=BoxComponent(
+                layout='vertical',
+                contents=[
+                    # title
+                    TextComponent(text='Brown Cafe', weight='bold', size='xl'),
+                    # review
+                    BoxComponent(
+                        layout='baseline',
+                        margin='md',
+                        contents=[
+                            TextComponent(text='4.0', size='sm', color='#999999', margin='md',
+                                          flex=0)
+                        ]
+                    ),
+                    # info
+                    BoxComponent(
+                        layout='vertical',
+                        margin='lg',
+                        spacing='sm',
+                        contents=[
+                            BoxComponent(
+                                layout='baseline',
+                                spacing='sm',
+                                contents=[
+                                    TextComponent(
+                                        text='Place',
+                                        color='#aaaaaa',
+                                        size='sm',
+                                        flex=1
+                                    ),
+                                    TextComponent(
+                                        text='Shinjuku, Tokyo',
+                                        wrap=True,
+                                        color='#666666',
+                                        size='sm',
+                                        flex=5
+                                    )
+                                ],
+                            ),
+                            BoxComponent(
+                                layout='baseline',
+                                spacing='sm',
+                                contents=[
+                                    TextComponent(
+                                        text='Time',
+                                        color='#aaaaaa',
+                                        size='sm',
+                                        flex=1
+                                    ),
+                                    TextComponent(
+                                        text="10:00 - 23:00",
+                                        wrap=True,
+                                        color='#666666',
+                                        size='sm',
+                                        flex=5,
+                                    ),
+                                ],
+                            ),
+                        ],
+                    )
+                ],
+            ),
+            footer=BoxComponent(
+                layout='vertical',
+                spacing='sm',
+                contents=[
+                    # callAction
+                    ButtonComponent(
+                        style='link',
+                        height='sm',
+                        action=URIAction(label='CALL', uri='tel:000000'),
+                    ),
+                    # separator
+                    SeparatorComponent(),
+                    # websiteAction
+                    ButtonComponent(
+                        style='link',
+                        height='sm',
+                        action=URIAction(label='WEBSITE', uri="https://example.com")
+                    )
+                ]
+            ),
+        )
+        message = FlexSendMessage(alt_text="hello", contents=bubble)
         line_bot_api.reply_message(
             user_token,
-            [
-                TextSendMessage(text="@{}".format(profile.display_name)),
-                TextSendMessage(text="Status : {}".format(profile.status_message)),
-                TextSendMessage(text = "User ID : {}".format(profile.user_id)),
-                sticker_message,
-            ],
+            message
         )
-    if user_msg.startswith('push '):
-        '''
-        Cara pemakaian :
-        push {nomor pack} {nomor sticker} {json file} {pesan}
-        ex :push 1 1 hearing.json maap yah
-        '''
-        data = user_msg.split(' ')[1:]  # this will push something to the group, under consturction
-        # group = data[0]
-        line_bot_api.push_message(
-            'C1528a299c9ba3a5b556fd2148da8b53d', [
-                FlexSendMessage(alt_text="hello", contents=json.load(open('flex.json', ))),
-                TextSendMessage(text=' '.join(data[2:])),
-                StickerSendMessage(
-                    package_id=data[0],
-                    sticker_id= data[1],
-                )
-            ]
-        )
-    if user_msg.startswith('send_all '):  # Brodcast to all who added eina chan
-        line_bot_api.broadcast(
-            [
-                # FlexSendMessage(alt_text="hello", contents=json.load(open('flex.json', ))),
-                TextSendMessage(text=' '.join(user_msg.split(' ')[1:])),
-            ]
-        )
-    if user_msg.startswith('broadcast '):  # broadcast 20190505 , tbh idk what this does till now
-        date = user_msg.split(' ')[1]
-        print("Getting broadcast result: " + date)
-        result = line_bot_api.get_message_delivery_broadcast(date)
-        line_bot_api.reply_message(
-            event.reply_token, [
-                TextSendMessage(text='Number of sent broadcast messages: ' + date),
-                TextSendMessage(text='status: ' + str(result.status)),
-                TextSendMessage(text='success: ' + str(result.success)),
-            ]
-        )
+

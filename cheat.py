@@ -232,7 +232,7 @@ def handle_text_message(event):
         bubble = BubbleContainer(
             direction='ltr',
             hero=ImageComponent(
-                url='https://example.com/cafe.jpg',
+                url='https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png',
                 size='full',
                 aspect_ratio='20:13',
                 aspect_mode='cover',
@@ -248,11 +248,6 @@ def handle_text_message(event):
                         layout='baseline',
                         margin='md',
                         contents=[
-                            IconComponent(size='sm', url='https://example.com/gold_star.png'),
-                            IconComponent(size='sm', url='https://example.com/grey_star.png'),
-                            IconComponent(size='sm', url='https://example.com/gold_star.png'),
-                            IconComponent(size='sm', url='https://example.com/gold_star.png'),
-                            IconComponent(size='sm', url='https://example.com/grey_star.png'),
                             TextComponent(text='4.0', size='sm', color='#999999', margin='md',
                                           flex=0)
                         ]
