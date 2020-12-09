@@ -18,11 +18,12 @@ def command(event):
     # do not bother to edit anything here
     # batas suci
     if user_msg.startswith('anime '):  # cara pakai anime {nama anime}
-        response = requests.get(f'https://kitsu.io/api/edge/anime?filter[text]={user_msg.split()[1:]}').json()['data']['0']['attributes']
+        response = requests.get(f'https://kitsu.io/api/edge/anime?filter[text]={user_msg.split()[1:]}')
+        print(response.status_code)
         bubble = BubbleContainer(
             direction='ltr',
             hero=ImageComponent(
-                url=response['posterImage']['original'],
+                url='https://media.kitsu.io/anime/poster_images/1/original.jpg?1597604210',
                 size='full',
                 aspect_ratio='20:13',
                 aspect_mode='cover',
