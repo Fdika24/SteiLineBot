@@ -114,7 +114,7 @@ def command(event):
                 ]
             ),
         )
-        message = FlexSendMessage(alt_text="hello", contents=bubble)
+        message = FlexSendMessage(alt_text=title, contents=bubble)
         line_bot_api.reply_message(
             user_token,
             message
